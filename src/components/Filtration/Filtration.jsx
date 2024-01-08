@@ -1,14 +1,16 @@
 import css from './filtration.module.css';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { updateFilter } from '../../redux/contactsSlice';
 
 const Filtration = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(state => state.contacts.filter);
+  // const filter = useSelector(state => state.contacts.filter);
+  let localFilter = '';
 
   const handleChange = event => {
-    dispatch(updateFilter(event.target.value));
+    localFilter = event.target.value;
+    dispatch(updateFilter(localFilter));
   };
 
   return (
@@ -17,7 +19,7 @@ const Filtration = () => {
       <input
         type="text"
         name="filter"
-        value={filter}
+        value={localFilter}
         placeholder="Search"
         onChange={handleChange}
       />
@@ -26,21 +28,3 @@ const Filtration = () => {
 };
 
 export default Filtration;
-
-// const Filtration = () => {
-//   const dispatch = useDispatch();
-//   const filter = useSelector(state => state.contacts.filter);
-
-//   const handleChange = event => {
-//     dispatch(updateFilter(event.target.value));
-//   };
-
-//   return (
-//     <label>
-//       Find contacts by name
-//       <input type="text" name="filter" value={filter} placeholder="Search" onChange={handleChange} />
-//     </label>
-//   );
-// };
-
-// export default Filtration;
