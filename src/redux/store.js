@@ -14,7 +14,9 @@ import contactsReducer from '../redux/contactsSlice';
 
 const persistConfig = {
   key: 'root',
+
   storage,
+
   blaclist: ['filter'],
 };
 
